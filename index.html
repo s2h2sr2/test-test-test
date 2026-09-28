@@ -14,251 +14,209 @@
     body {
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+      background: radial-gradient(ellipse at center, #4a0080, #1a0033);
+      box-shadow: inset 0 0 100px #cc00ff44;
       font-family: 'Segoe UI', sans-serif;
     }
 
-    .calculator {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
-                  0 0 0 1px rgba(255,255,255,0.1);
-      width: 320px;
-    }
-
-    .display {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 16px;
-      padding: 20px;
+    h1 {
+      text-align: center;
+      color: #39ff14;
+      font-size: 48px;
       margin-bottom: 20px;
+      text-shadow: 0 0 20px #39ff14, 0 0 40px #39ff14;
+    }
+
+    .calculator {
+      width: 380px;
+      padding: 20px;
+    }
+
+    .anzeige {
+      background: linear-gradient(135deg, #2d0057, #4a0080);
+      color: #00d4ff;
+      font-size: 48px;
       text-align: right;
-    }
-
-    .display .expression {
-      color: rgba(255, 255, 255, 0.4);
-      font-size: 14px;
-      min-height: 20px;
-      margin-bottom: 8px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .display .result {
-      color: #ffffff;
-      font-size: 40px;
-      font-weight: 300;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      padding: 30px 25px;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      border: 2px solid #cc00ff88;
+      box-shadow: 0 0 30px #cc00ff88;
+      min-height: 100px;
+      word-break: break-all;
     }
 
     .buttons {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      gap: 8px;
     }
 
     button {
-      padding: 18px;
+      height: 90px;
+      font-size: 28px;
+      font-weight: bold;
+      border-radius: 15px;
       border: none;
-      border-radius: 14px;
-      font-size: 18px;
-      font-weight: 500;
+      color: white;
       cursor: pointer;
-      transition: transform 0.1s, box-shadow 0.1s;
-      outline: none;
+      transition: transform 0.2s ease, filter 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      filter: brightness(1.3);
     }
 
     button:active {
-      transform: scale(0.93);
+      transform: scale(0.95);
     }
 
-    /* Zahlen */
-    .btn-num {
-      background: rgba(255, 255, 255, 0.08);
-      color: #ffffff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
+    /* --- Zeile 1: 7 8 9 ÷ --- */
+    .btn-7  { background: linear-gradient(135deg, #ff0080, #cc0066); box-shadow: 0 0 15px #ff008088; }
+    .btn-8  { background: linear-gradient(135deg, #ff6600, #cc5200); box-shadow: 0 0 15px #ff660088; }
+    .btn-9  { background: linear-gradient(135deg, #ffcc00, #cc9900); box-shadow: 0 0 15px #ffcc0088; color: #1a0033; }
+    .btn-div { background: linear-gradient(135deg, #00d4ff, #0099cc); box-shadow: 0 0 15px #00d4ff88; }
 
-    .btn-num:hover {
-      background: rgba(255, 255, 255, 0.15);
-    }
+    /* --- Zeile 2: 4 5 6 × --- */
+    .btn-4  { background: linear-gradient(135deg, #cc00ff, #9900cc); box-shadow: 0 0 15px #cc00ff88; }
+    .btn-5  { background: linear-gradient(135deg, #0066ff, #0044cc); box-shadow: 0 0 15px #0066ff88; }
+    .btn-6  { background: linear-gradient(135deg, #00ff99, #00cc77); box-shadow: 0 0 15px #00ff9988; color: #1a0033; }
+    .btn-mul { background: linear-gradient(135deg, #00d4ff, #0099cc); box-shadow: 0 0 15px #00d4ff88; }
 
-    /* Operatoren */
-    .btn-op {
-      background: rgba(82, 130, 255, 0.25);
-      color: #7eb3ff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
+    /* --- Zeile 3: 1 2 3 − --- */
+    .btn-1  { background: linear-gradient(135deg, #ff3300, #cc2200); box-shadow: 0 0 15px #ff330088; }
+    .btn-2  { background: linear-gradient(135deg, #ff9900, #cc7700); box-shadow: 0 0 15px #ff990088; }
+    .btn-3  { background: linear-gradient(135deg, #39ff14, #28cc0f); box-shadow: 0 0 15px #39ff1488; color: #1a0033; }
+    .btn-sub { background: linear-gradient(135deg, #00d4ff, #0099cc); box-shadow: 0 0 15px #00d4ff88; }
 
-    .btn-op:hover {
-      background: rgba(82, 130, 255, 0.4);
-    }
+    /* --- Zeile 4: 0 . = + --- */
+    .btn-0  { background: linear-gradient(135deg, #ff00ff, #cc00cc); box-shadow: 0 0 15px #ff00ff88; }
+    .btn-dot { background: linear-gradient(135deg, #ffffff, #cccccc); box-shadow: 0 0 15px #ffffff88; color: #1a0033; }
+    .btn-eq { background: linear-gradient(135deg, #f0a500, #e67e00); box-shadow: 0 0 15px #f0a50088; }
+    .btn-add { background: linear-gradient(135deg, #00d4ff, #0099cc); box-shadow: 0 0 15px #00d4ff88; }
 
-    /* Gleich */
-    .btn-eq {
-      background: linear-gradient(135deg, #5282ff, #a259ff);
-      color: #ffffff;
-      box-shadow: 0 4px 16px rgba(82, 130, 255, 0.4);
-    }
-
-    .btn-eq:hover {
-      box-shadow: 0 4px 24px rgba(82, 130, 255, 0.6);
-    }
-
-    /* Clear / Sondertasten */
-    .btn-clear {
-      background: rgba(255, 80, 80, 0.2);
-      color: #ff8080;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-    .btn-clear:hover {
-      background: rgba(255, 80, 80, 0.35);
-    }
-
-    /* Doppelt breit */
-    .span-2 {
+    /* --- Zeile 5: C DEL (je 2 breit) --- */
+    .btn-c   {
       grid-column: span 2;
+      background: linear-gradient(135deg, #c0392b, #922b21);
+      box-shadow: 0 0 15px #c0392b88;
+    }
+    .btn-del {
+      grid-column: span 2;
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      box-shadow: 0 0 15px #e74c3c88;
     }
   </style>
 </head>
 <body>
 
+  <h1>🧮 Taschenrechner</h1>
+
   <div class="calculator">
-    <div class="display">
-      <div class="expression" id="expression"></div>
-      <div class="result" id="result">0</div>
-    </div>
+    <div class="anzeige" id="anzeige">0</div>
 
     <div class="buttons">
       <!-- Zeile 1 -->
-      <button class="btn-clear" onclick="clearAll()">AC</button>
-      <button class="btn-clear" onclick="deleteLast()">⌫</button>
-      <button class="btn-op"    onclick="inputOp('%')">%</button>
-      <button class="btn-op"    onclick="inputOp('/')">÷</button>
+      <button class="btn-7"   onclick="eingabe('7')">7</button>
+      <button class="btn-8"   onclick="eingabe('8')">8</button>
+      <button class="btn-9"   onclick="eingabe('9')">9</button>
+      <button class="btn-div" onclick="eingabe('/')">÷</button>
 
       <!-- Zeile 2 -->
-      <button class="btn-num" onclick="inputNum('7')">7</button>
-      <button class="btn-num" onclick="inputNum('8')">8</button>
-      <button class="btn-num" onclick="inputNum('9')">9</button>
-      <button class="btn-op"  onclick="inputOp('*')">×</button>
+      <button class="btn-4"   onclick="eingabe('4')">4</button>
+      <button class="btn-5"   onclick="eingabe('5')">5</button>
+      <button class="btn-6"   onclick="eingabe('6')">6</button>
+      <button class="btn-mul" onclick="eingabe('*')">×</button>
 
       <!-- Zeile 3 -->
-      <button class="btn-num" onclick="inputNum('4')">4</button>
-      <button class="btn-num" onclick="inputNum('5')">5</button>
-      <button class="btn-num" onclick="inputNum('6')">6</button>
-      <button class="btn-op"  onclick="inputOp('-')">−</button>
+      <button class="btn-1"   onclick="eingabe('1')">1</button>
+      <button class="btn-2"   onclick="eingabe('2')">2</button>
+      <button class="btn-3"   onclick="eingabe('3')">3</button>
+      <button class="btn-sub" onclick="eingabe('-')">−</button>
 
       <!-- Zeile 4 -->
-      <button class="btn-num" onclick="inputNum('1')">1</button>
-      <button class="btn-num" onclick="inputNum('2')">2</button>
-      <button class="btn-num" onclick="inputNum('3')">3</button>
-      <button class="btn-op"  onclick="inputOp('+')">+</button>
+      <button class="btn-0"   onclick="eingabe('0')">0</button>
+      <button class="btn-dot" onclick="eingabePunkt()">.</button>
+      <button class="btn-eq"  onclick="berechnen()">=</button>
+      <button class="btn-add" onclick="eingabe('+')">+</button>
 
       <!-- Zeile 5 -->
-      <button class="btn-num span-2" onclick="inputNum('0')">0</button>
-      <button class="btn-num"        onclick="inputDot()">.</button>
-      <button class="btn-eq"         onclick="calculate()">=</button>
+      <button class="btn-c"   onclick="allesLoeschen()">C</button>
+      <button class="btn-del" onclick="loeschenLetztes()">DEL</button>
     </div>
   </div>
 
   <script>
-    let current = '';
-    let expression = '';
+    let ausdruck = '';
 
-    const resultEl    = document.getElementById('result');
-    const expressionEl = document.getElementById('expression');
+    const anzeige = document.getElementById('anzeige');
 
-    function updateDisplay() {
-      resultEl.textContent = current || '0';
-    }
-
-    function inputNum(num) {
-      // Maximale Länge begrenzen
-      if (current.length >= 12) return;
-      current += num;
-      updateDisplay();
-    }
-
-    function inputDot() {
-      if (current.includes('.')) return;
-      if (current === '') current = '0';
-      current += '.';
-      updateDisplay();
-    }
-
-    function inputOp(op) {
-      if (current === '' && expression === '') return;
-
-      // Letztes Zeichen ist bereits ein Operator? Ersetzen.
-      if (current === '' && expression !== '') {
-        expression = expression.slice(0, -1) + op;
-        expressionEl.textContent = formatExpression(expression);
-        return;
-      }
-
-      expression += current + op;
-      expressionEl.textContent = formatExpression(expression);
-      current = '';
-    }
-
-    function calculate() {
-      if (expression === '' || current === '') return;
-
-      const full = expression + current;
-      expressionEl.textContent = formatExpression(full) + ' =';
-
-      try {
-        let result = Function('"use strict"; return (' + full + ')')();
-        // Prozent-Handling: % wird als /100 interpretiert (schon via JS-Modulo, daher Hinweis)
-        result = parseFloat(result.toFixed(10));
-        current = String(result);
-        expression = '';
-        updateDisplay();
-      } catch {
-        resultEl.textContent = 'Fehler';
-        current = '';
-        expression = '';
-      }
-    }
-
-    function clearAll() {
-      current = '';
-      expression = '';
-      expressionEl.textContent = '';
-      updateDisplay();
-    }
-
-    function deleteLast() {
-      current = current.slice(0, -1);
-      updateDisplay();
-    }
-
-    function formatExpression(expr) {
-      return expr
+    function aktualisieren() {
+      // Anzeige leserlich machen
+      anzeige.textContent = ausdruck
         .replace(/\*/g, '×')
-        .replace(/\//g, '÷')
-        .replace(/-/g, '−');
+        .replace(/\//g, '÷') || '0';
+    }
+
+    function eingabe(zeichen) {
+      // Verhindert doppelte Operatoren am Ende
+      const operatoren = ['+', '-', '*', '/'];
+      if (operatoren.includes(zeichen) && operatoren.includes(ausdruck.slice(-1))) {
+        ausdruck = ausdruck.slice(0, -1);
+      }
+      if (ausdruck.length >= 16) return;
+      ausdruck += zeichen;
+      aktualisieren();
+    }
+
+    function eingabePunkt() {
+      // Punkt nur einfügen, wenn letzter Block noch keinen hat
+      const teile = ausdruck.split(/[\+\-\*\/]/);
+      if (teile[teile.length - 1].includes('.')) return;
+      if (ausdruck === '') ausdruck = '0';
+      ausdruck += '.';
+      aktualisieren();
+    }
+
+    function berechnen() {
+      if (ausdruck === '') return;
+      try {
+        let ergebnis = Function('"use strict"; return (' + ausdruck + ')')();
+        ergebnis = parseFloat(ergebnis.toFixed(10));
+        ausdruck = String(ergebnis);
+        aktualisieren();
+      } catch {
+        anzeige.textContent = 'Fehler';
+        ausdruck = '';
+      }
+    }
+
+    function allesLoeschen() {
+      ausdruck = '';
+      aktualisieren();
+    }
+
+    function loeschenLetztes() {
+      ausdruck = ausdruck.slice(0, -1);
+      aktualisieren();
     }
 
     // Tastatur-Support
     document.addEventListener('keydown', (e) => {
-      if (e.key >= '0' && e.key <= '9') inputNum(e.key);
-      else if (e.key === '+') inputOp('+');
-      else if (e.key === '-') inputOp('-');
-      else if (e.key === '*') inputOp('*');
-      else if (e.key === '/') { e.preventDefault(); inputOp('/'); }
-      else if (e.key === '%') inputOp('%');
-      else if (e.key === '.') inputDot();
-      else if (e.key === 'Enter' || e.key === '=') calculate();
-      else if (e.key === 'Backspace') deleteLast();
-      else if (e.key === 'Escape') clearAll();
+      if (e.key >= '0' && e.key <= '9') eingabe(e.key);
+      else if (e.key === '+') eingabe('+');
+      else if (e.key === '-') eingabe('-');
+      else if (e.key === '*') eingabe('*');
+      else if (e.key === '/') { e.preventDefault(); eingabe('/'); }
+      else if (e.key === '.') eingabePunkt();
+      else if (e.key === 'Enter' || e.key === '=') berechnen();
+      else if (e.key === 'Backspace') loeschenLetztes();
+      else if (e.key === 'Escape') allesLoeschen();
     });
   </script>
 
