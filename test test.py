@@ -23,7 +23,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🧮 Taschenrechner")
+st.title("Testrechner")
 
 # Zustand initialisieren
 if "eingabe" not in st.session_state:
